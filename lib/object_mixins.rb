@@ -121,7 +121,11 @@ class Object
   def to_ymdhm
     self.strftime("%Y-%m-%d %I:%M %p") unless self.nil?
   end
-
+  
+  def to_migration_time
+    self.strftime("%Y%m%d%I%M%S") unless self.nil?
+  end
+  
   #useful hack for looking at methods in console without seeing all the usual Object methods
   def class_methods
     (self.methods - Object.methods).sort
