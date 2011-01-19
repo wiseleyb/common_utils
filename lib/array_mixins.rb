@@ -29,21 +29,22 @@ class Array
     self.collect {|i| i.to_i}
   end
 
+  # THIS DIES IN RAILS 3 when you do a model.save
   #creates a hash out of an array of objects with a specified key
   # example
   # users = User.all
   # user_hash = users.to_hash(:login)
   # user_hash["smith"]....
-  def to_hash(key_method)
-    key_method = key_method.to_sym
-    arr = self.collect(&key_method)
-    raise "Key Method supplied was not unique" unless arr.size == self.size
-    h = {}
-    self.each do |a|
-      h[a.send(key_method)] = a
-    end
-    return h
-  end
+  # def to_hash(key_method)
+  #   key_method = key_method.to_sym
+  #   arr = self.collect(&key_method)
+  #   raise "Key Method supplied was not unique" unless arr.size == self.size
+  #   h = {}
+  #   self.each do |a|
+  #     h[a.send(key_method)] = a
+  #   end
+  #   return h
+  # end
 
   def normalize(min = 0.1, max = 99.9)
     tmp = self.to_i
